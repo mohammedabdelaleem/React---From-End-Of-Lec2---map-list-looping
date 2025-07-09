@@ -5,6 +5,7 @@ export default class Admins extends React.Component {
     super();
 
     this.state = {
+      isAuth:true,
       users: [
         { name: "Nader", age: 22, isAdmin: true },
         { name: "Hany", age: 27, isAdmin: false },
@@ -18,7 +19,7 @@ export default class Admins extends React.Component {
     return (
       <>
         <ul>
-          {this.state.users.map((user, index) => {
+          {/* {this.state.isAuth && this.state.users.map((user, index) => {
             if (!user.isAdmin)
               return (
                 <>
@@ -29,7 +30,15 @@ export default class Admins extends React.Component {
                   <li>===================================================</li>
                 </>
               );
-          })}
+          })} */}
+
+
+            {(this.state.isAuth) ? this.state.users.map((user, index) => {
+            if (!user.isAdmin)
+              return (
+                  <li>{index} == {user.name} == {user.age}</li>
+              );
+          } ): <h1>Please Login </h1>}
         </ul>
       </>
     );
