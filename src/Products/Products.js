@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import {Link} from "react-router-dom";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -26,7 +27,7 @@ export default function Products() {
               {p.description.length > 100 ? p.description.slice(0, 100) + "..." : p.description}
             </p>
             <div style={styles.footer}>
-              <a href="#" style={styles.button}>Buy</a>
+              <Link to={`/products/${p.id}`} style={styles.button}>Details</Link>
               <strong>${p.price}</strong>
             </div>
           </div>
