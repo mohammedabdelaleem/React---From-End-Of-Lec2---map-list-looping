@@ -1,13 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import {Link} from "react-router-dom";
-
+import axiosInstance from '../axios config/AxiosInstance'
 export default function Products() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("https://fakestoreapi.com/products")
+    axiosInstance
+      .get("/products")
       .then((response) => {
         setProducts(response.data);
       })

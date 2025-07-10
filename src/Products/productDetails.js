@@ -1,27 +1,40 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import axiosInstance from "../axios config/AxiosInstance";
 
 export default function ProductDetails() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
 
-  const GetProduct = async () => {
-    try {
-      const response = await fetch(`https://fakestoreapi.com/products/${id}`);
-      return await response.json();
-    } catch (error) {
-      console.error("Error fetching product:", error);
-    }
-  };
+  // const GetProduct = async () => {
+  //   try {
+  //     const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+  //     return await response.json();
+  //   } catch (error) {
+  //     console.error("Error fetching product:", error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   const fetchAndSetProduct = async () => {
+  //     const data = await GetProduct();
+  //     setProduct(data);
+  //   };
+
+  //   fetchAndSetProduct();
+  // }, [id]);
 
   useEffect(() => {
-    const fetchAndSetProduct = async () => {
-      const data = await GetProduct();
-      setProduct(data);
-    };
-
-    fetchAndSetProduct();
-  }, [id]);
+    axiosInstance
+      .get(`/products/${id}`)
+      .then((response) => {
+        console.log(response.data)
+        setProduct(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   if (!product) return <p style={styles.loading}>Loading product...</p>;
 
