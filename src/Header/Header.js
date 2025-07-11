@@ -1,7 +1,11 @@
+import { useSelector } from "react-redux";
 import {Link} from "react-router-dom";
 
 
 export default function Header() {
+
+ let language = useSelector((state)=>state.lang)
+
 
   return (
     <>
@@ -26,6 +30,7 @@ export default function Header() {
           <Link className="nav-link" to="/Products">Products</Link>
         </li> 
       </ul>
+      <div style={{float:"right", marginRight:"50px"}}>lang : {language}</div>
     </div>
   </div>
 </nav>
