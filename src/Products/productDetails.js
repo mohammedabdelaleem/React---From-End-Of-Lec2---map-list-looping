@@ -5,7 +5,6 @@ import axiosInstance from "../axios config/AxiosInstance";
 export default function ProductDetails() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
-
   // const GetProduct = async () => {
   //   try {
   //     const response = await fetch(`https://fakestoreapi.com/products/${id}`);
@@ -28,7 +27,7 @@ export default function ProductDetails() {
     axiosInstance
       .get(`/products/${id}`)
       .then((response) => {
-        console.log(response.data)
+        console.log(response.data);
         setProduct(response.data);
       })
       .catch((error) => {
@@ -36,10 +35,18 @@ export default function ProductDetails() {
       });
   }, []);
 
-  if (!product) return <p style={styles.loading}>Loading product...</p>;
+  if (!product) return (
+        <div style={{ width: "100vw", height: "10vh", paddingBlock: "20%" }}>
+          <div className="d-flex justify-content-center ">
+            <div className="spinner-border" role="status"></div>
+          </div>
+        </div>
+      );
 
   return (
     <div style={styles.container}>
+
+
       <div style={styles.card} key={product.id}>
         <div style={styles.imageWrapper}>
           <img src={product.image} alt={product.title} style={styles.image} />

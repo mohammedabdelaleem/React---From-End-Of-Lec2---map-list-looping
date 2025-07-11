@@ -1,7 +1,7 @@
 
 import axios from 'axios'
 import store from '../Redux/store';
-import { changeLoadingState } from '../Redux/actions';
+import { changeLoadingState } from '../Redux/actions/changeLoadingState';
 
 const axiosInstance = axios.create({
   baseURL : "https://fakestoreapi.com"

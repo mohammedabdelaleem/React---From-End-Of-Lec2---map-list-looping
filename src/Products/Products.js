@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
-  const loader = useSelector((state) => state.isLoading);
+  const loader = useSelector((state) => state.loader.isLoading);
 
   useEffect(() => {
     axiosInstance
