@@ -1,6 +1,11 @@
 
 let InitialState = {
-  lang: "en"
+  lang: "en",
+  commission: {
+    it:0.55,
+    cs:0.3,
+    is:4
+  }
 }
 
 export default function languageReducer(state=InitialState, action ){
