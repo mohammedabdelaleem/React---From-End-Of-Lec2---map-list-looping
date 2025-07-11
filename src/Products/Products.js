@@ -1,9 +1,13 @@
-import axios from "axios";
+//  import axiosInstance from "../axios config/AxiosInstance";
+
 import { useEffect, useState } from "react";
-import {Link} from "react-router-dom";
-import axiosInstance from '../axios config/AxiosInstance'
+import { Link } from "react-router-dom";
+import axiosInstance from "../axios config/AxiosInstance";
+import { useSelector } from "react-redux";
+
 export default function Products() {
   const [products, setProducts] = useState([]);
+  const loader = useSelector((state) => state.isLoading);
 
   useEffect(() => {
     axiosInstance
@@ -18,16 +22,28 @@ export default function Products() {
 
   return (
     <div style={styles.container}>
-      {products.map((p) => (
+      {loader && (
+        <div style={{ width: "100vw", height: "10vh", paddingBlock: "20%" }}>
+          <div className="d-flex justify-content-center ">
+            <div className="spinner-border" role="status"></div>
+          </div>
+        </div>
+      )}
+
+        {products.map((p) => (
         <div style={styles.card} key={p.id}>
           <img src={p.image} alt={p.title} style={styles.image} />
           <div style={styles.content}>
             <h5 style={styles.title}>{p.title}</h5>
             <p style={styles.description}>
-              {p.description.length > 100 ? p.description.slice(0, 100) + "..." : p.description}
+              {p.description.length > 100
+                ? p.description.slice(0, 100) + "..."
+                : p.description}
             </p>
             <div style={styles.footer}>
-              <Link to={`/products/${p.id}`} style={styles.button}>Details</Link>
+              <Link to={`/products/${p.id}`} style={styles.button}>
+                Details
+              </Link>
               <strong>${p.price}</strong>
             </div>
           </div>
@@ -45,7 +61,7 @@ const styles = {
     justifyContent: "center",
     padding: "20px",
     width: "100%",
-    boxSizing: "border-box"
+    boxSizing: "border-box",
   },
   card: {
     display: "flex",
@@ -94,5 +110,5 @@ const styles = {
     textDecoration: "none",
     padding: "5px 10px",
     borderRadius: "5px",
-  }
+  },
 };

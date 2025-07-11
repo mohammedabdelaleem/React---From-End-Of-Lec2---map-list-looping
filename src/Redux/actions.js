@@ -1,12 +1,15 @@
-
 // action take new data , returns {type + payload}
 
-export default function changeLanguage(data){
-
-
+export function changeLanguage(data) {
   return {
-    type:"CHANGE_LANGUAGE",
-    payload:data
-  }
+    type: "CHANGE_LANGUAGE",
+    payload: data,
+  };
 }
 
+export function changeLoadingState(data) {
+  return {
+    type: "CHANGE_LOADING_STATE",
+    payload: data,
+  };
+}

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import changeLanguage from "../Redux/actions";
+import {changeLanguage} from "../Redux/actions";
 
 export default function Header() {
   let language = useSelector((state) => state.lang);
