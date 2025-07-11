@@ -1,9 +1,12 @@
-import React from "react";
+import {useSelector} from 'react-redux'
 
 export default function Home () {
+
+  const lang = useSelector((state)=>state.lang)
+
   return (
-    <div>
+    <div dir={`${lang=="ar" ? "rtl" : "ltr"}`}>
       <h1>Hello From Home</h1>
-    </div>
+    </div>  
   );
 }
